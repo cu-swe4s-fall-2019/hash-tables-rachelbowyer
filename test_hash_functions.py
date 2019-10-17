@@ -1,10 +1,12 @@
 import unittest
 import hash_functions as h
+import hash_functions
+import hash_tables as ht
 import random
 
 
-class TestHashFunctions(unittest.TestCase):
-    """testing hash functions types"""
+class TestHashFunctionsFunction(unittest.TestCase):
+    """testing hash functions types for function"""
 
     def test_h_ascii_works(self):
         """test h_ascii function returns expected result"""
@@ -29,6 +31,34 @@ class TestHashFunctions(unittest.TestCase):
         N = random.randint(1, 1000)  # chose rand file size
         r = h.h_python('testkey', N)  # test on known key
         self.assertEqual(r, hash('testkey') % N)
+
+
+class TestHashErrorModes(unittest.TestCase):
+    """testing hash functions type error modes"""
+
+    def test_h_ascii_error_mode_key(self):
+        """test h_ascii function returns error for bad key"""
+        N = random.randint(1, 1000)  # chose rand file size
+        with self.assertRaises(ValueError):
+            h.h_ascii(2, N)
+
+    def test_h_ascii_error_mode_N(self):
+        """test h_ascii function returns error for bad N"""
+        N = 0.4
+        with self.assertRaises(ValueError):
+            h.h_ascii('testkey', N)
+
+    def test_h_rolling_error_mode_key(self):
+        """test h_rolling function returns error for bad key"""
+        N = random.randint(1, 1000)  # chose rand file size
+        with self.assertRaises(ValueError):
+            h.h_rolling(2, N)
+
+    def test_h_rolling_error_mode_N(self):
+        """test h_ascii function returns error for bad N"""
+        N = 0.4
+        with self.assertRaises(ValueError):
+            h.h_rolling('testkey', N)
 
 
 if __name__ == '__main__':
