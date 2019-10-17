@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 out_file = sys.argv[1]
 x_label = sys.argv[2]
 y_label = sys.argv[3]
+title = sys.argv[4]
 
 X = []
 Y = []
@@ -29,5 +30,6 @@ ax = fig.add_subplot(1,1,1)
 ax.plot(X, Y, '.', ms=1, alpha=0.5)
 ax.set_xlabel(x_label)
 ax.set_ylabel(y_label)
+plt.title(title)
 
 plt.savefig(out_file,bbox_inches='tight')
