@@ -17,5 +17,5 @@ script:
     - chmod +x functional_tests.sh
     - chmod +x hash_tests.sh
     - python test_hash_functions.py
-    - ./hash_test.sh
+    - ./hash_tests.sh
     - ./functional_tests.sh
