@@ -19,16 +19,30 @@ def h_ascii(key, N):
 def h_rolling(key, N, p=53,  m=2**64):
     """polynomial rolling hash algorithm"""
     if type(key) == str:
-        if type(N) == int:
+        s = 0
+        for i in range(len(key)):
+            s += ord(key[i]) * p**i
+        s = s % m
+        return s % N
+    elif type(N) == int:
             s = 0
             for i in range(len(key)):
                 s += ord(key[i]) * p**i
             s = s % m
             return s % N
-        else:
-            raise ValueError
     else:
         raise ValueError
+#     if type(key) == str:
+#         if type(N) == int:
+#             s = 0
+#             for i in range(len(key)):
+#                 s += ord(key[i]) * p**i
+#             s = s % m
+#             return s % N
+#         else:
+#             raise ValueError
+#     else:
+#         raise ValueError
 
 
 def h_python(key, N):

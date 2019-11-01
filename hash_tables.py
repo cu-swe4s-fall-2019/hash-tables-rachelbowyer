@@ -7,9 +7,9 @@ import argparse
 class LinearProbe:
     def __init__(self, N, hash_function):
         self.hash = hash_function
-        self.N = N
-        self.T = [None for i in range(N)]
-        self.M = 0
+        self.N = N  # size of hash table
+        self.T = [None for i in range(N)]  # where values are stored
+        self.M = 0  # large number
 
     def add(self, key, value):
         hash_slot = self.hash(key, self.N)
@@ -40,8 +40,10 @@ class ChainedHash:
         self.N = N
         self.T = [[] for i in range(N)]
         self.M = 0
+        self.keys = []
 
     def add(self, key, value):
+        self.keys.append(key)  #only add unique keys??
         hash_slot = self.hash(key, self.N)
         self.T[hash_slot].append((key, value))
         self.M += 1
@@ -49,10 +51,16 @@ class ChainedHash:
 
     def search(self, key):
         hash_slot = self.hash(key, self.N)
-
+        
         for k, v in self.T[hash_slot]:
             if key == k:
-                return v
+                thing = self.T[hash_slot]
+                keep = []
+                for num in thing:
+                    if num[0] == key:
+                        keep.append(num[1])
+                return keep
+                #return self.T[hash_slot]
         return None
 
 
