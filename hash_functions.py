@@ -26,12 +26,19 @@ def h_rolling(key, N, p=53,  m=2**64):
         return s % N
     elif type(N) == int:
             s = 0
+            try:
+                len(key)
+            except:
+                raise ValueError
+            
             for i in range(len(key)):
                 s += ord(key[i]) * p**i
             s = s % m
             return s % N
     else:
         raise ValueError
+        
+        
 #     if type(key) == str:
 #         if type(N) == int:
 #             s = 0

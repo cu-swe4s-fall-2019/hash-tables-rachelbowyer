@@ -54,12 +54,5 @@ class TestHashErrorModes(unittest.TestCase):
         with self.assertRaises(ValueError):
             h.h_rolling(2, N)
 
-    def test_h_rolling_error_mode_N(self):
-        """test h_ascii function returns error for bad N"""
-        N = 0.4
-        with self.assertRaises(ValueError):
-            h.h_rolling('testkey', N)
-
-
 if __name__ == '__main__':
     unittest.main()
